@@ -4,27 +4,32 @@
 const express = require('express')
 const parser = require('body-parser')
 const app = express()
+const fileop = require('./CampusFileController')
 app.use(parser.json())
+// http://localhost:1235/file/all
+// file>> url for router
+// all >> end point in the file router
+app.use('/file',fileop)
+// // storage
+// const professors = ["Suman","Venkatash","Prabhakaran","Richard","Mallesh","Prakash","Krish"]
 
-const professors = ["Suman","Venkatash","Prabhakaran","Richard","Mallesh","Prakash","Krish"]
-
-// end points
-app.get('/staffs',async(req,res)=>{
-    return res.send(`<i>${professors}</i>`)
-})
-// passed data as parameters
-app.get('/by/:index',async(req,res)=>{
-    const position = req.params.index
-    return res.send(`<h3>${professors[position-1]}</h3>`)
-})
-// pass data to backend via request body
-app.get('/secure',async(req,res)=>{
-    const begin = req.body.orgin
-    const result = professors.filter((professor)=>{
-        return professor.startsWith(begin)
-    })
-    res.status(200).json(result)
-})
+// // end points
+// app.get('/staffs',async(req,res)=>{
+//     return res.send(`<i>${professors}</i>`)
+// })
+// // passed data as parameters
+// app.get('/by/:index',async(req,res)=>{
+//     const position = req.params.index
+//     return res.send(`<h3>${professors[position-1]}</h3>`)
+// })
+// // pass data to backend via request body
+// app.get('/secure',async(req,res)=>{
+//     const begin = req.body.orgin
+//     const result = professors.filter((professor)=>{
+//         return professor.startsWith(begin)
+//     })
+//     res.status(200).json(result)
+// })
 
 
 

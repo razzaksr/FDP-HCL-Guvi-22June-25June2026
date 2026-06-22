@@ -1,0 +1,23 @@
+[
+  {
+    "corporate": "Microsoft",
+    "date": "2026-04-10",
+    "role": "Associate Software Engineer",
+    "package": 23.5,
+    "count": 10
+  },
+  {
+    "corporate": "Infosys",
+    "date": "2026-05-20",
+    "role": "Data Engineer",
+    "package": 30.5,
+    "count": 40
+  },
+  {
+    "corporate": "ZOHO",
+    "date": "2025-11-30",
+    "role": "Front end Developer",
+    "package": 5.2,
+    "count": 5
+  }
+]
