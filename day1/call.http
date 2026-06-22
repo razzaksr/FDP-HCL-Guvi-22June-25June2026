@@ -1,0 +1,10 @@
+@api = http://localhost:1235
+
+GET {{api}}/staffs
+###
+GET {{api}}/by/1
+###
+GET {{api}}/secure
+Content-Type: application/json
+
+{"orgin":"P"}
