@@ -1,0 +1,192 @@
+Node JS:
+	standalone java script executor like JDK(Java)
+
+	react, next, vite, angular	>> front end
+	express				>> back end
+
+		receives request
+		process request >> CRUD
+			get, post, put, patch, delete
+		connecting with database(NoSQL, SQL)
+			SQL>> Sequalize>> ORM
+				(function call to sql query)
+			NoSQL>> Mongoose>> ODM
+				(function call to mongodb commands)
+		response to client
+	
+	Backend server: Node JS, Express
+		port			customize port
+		location		localhost
+
+
+Agenda:
+	Develop back end application using files
+	Develop back end application with Mongodb
+	Adding Security (JSON Web Token)
+	Deploy it Render(Free Tier Cloud provide)
+
+example:
+	www.amazon.in	>> application
+	www.amazon.in/profile>>	profile management
+							Controller
+								add
+								edit
+								delete
+	www.amazon.in/cart>> cart management
+						CartController
+							add			>> www.amazon.in/cart/place
+							modify
+							place order
+							remove
+
+	rapido>>
+		rapido.com/ rides>> router
+				RidesController
+					new ride
+					view rides
+					download invoices
+					rate the rides
+	swiggy>>
+		swiggy.com/instamart>> router
+				OrderController
+					place order
+					view orders
+					rate orders
+					modify orders
+		swiggy.com/dining
+		swiggy.com/delivery
+
+
+Development Kit:
+	Node
+		nodejs.org
+
+	Verify>>
+		open cmd>> 
+			node --version
+
+	Node Package Manage>> npm
+		https://www.npmjs.com/ 
+			central dependency/libraries we can download / add into our project/app
+
+		syntax:
+			npm i LIBRARY
+		eg: install libraries
+			npm i body-parser
+			npm i mongoose
+				or
+			npm i express body-parser mongoose
+		eg: uninstall
+			npm uninstall body-parser
+
+Project Structure:
+	main.js/index.js	>> execution start point
+	package.json	>> project config
+			{
+				"dependencies":{
+						"express":version,
+						"mongoose":version
+				},
+				script:{
+					"start" : "node index.js",
+				},
+			}
+	
+	node_modules: physical section
+			dependencies >> 
+
+
+	command to create node project:
+		npm init -y (typical quick project)
+		npm init	(interactive mode to create project)
+
+
+	create our first js
+	run our first js file
+
+
+	prompt-sync>> library used get user input at runtime in our console
+
+	typical function syntax:	
+	function NAMEFUN(paramters){
+		// logic
+	}
+
+	arrow function syntax:
+	const/let/var NAMEFUN = (parameters) => {
+		
+	}
+
+
+
+Created project>> filestore
+	install express
+index.js
+	configure back end server:
+		import express object
+		assign port where server would run
+		
+	mapping>> request, response
+		get, post, put, patch, delete
+
+		get>> read data
+		post>> pass, save, submit
+		patch>> edit
+		delete>> remove
+		put>> update
+
+	eg: www.flipkart.com	>> application
+		flipkart.com/kart	>> router
+			KartController >> controller
+				mapping functions:
+					new item		>> post
+					view items	>> get
+					update items	>> patch/put
+					remove items	>> delete
+
+					app.get(request, response)
+					app.post(request, response)
+					app.patch(req, res)
+					app.delete(req, res)
+
+
+	nodemon>> deploy/ restart server automatically as soon as changes happens
+	npm i nodemon
+		replace: node index.js
+		into : nodemon index.js
+
+
+
+	scripts:
+		start: nodemon index.js
+
+	pass inputs to backend via request object:
+		parameter: it is visible in url>> req.params.
+		body: its secure since not visible>> req.body
+
+	test our endpoints:
+		browser>> get, delete via paramaters
+		client>> rest client >> vs code extension
+			postman, swagger
+			create .http where client calls managed
+
+			url, call
+
+	send>> html
+	json>> json
+
+
+
+Complete CRUD Application for placement:
+
+storage: File >> JSON
+api>> express
+client>> rest client/postman
+
+
+
+File
+DAO
+Controller(Router)		>> Rest API >> json
+index.js(Main File/ server)
+Client
