@@ -9,8 +9,10 @@ app.use(parser.json())
 // http://localhost:2222/db
 app.get('/:source',async(req,res)=>{
     const storage = req.params.source
-    if(storage==="file") app.use('/api',fsApi)
-    else app.use('/api', dbApi)
+    if (storage==="file")
+        app.use('/api',fsApi)
+    else
+        app.use('/api',dbApi)
     res.json({"Message":`Source decided ${storage}`})
 })
 

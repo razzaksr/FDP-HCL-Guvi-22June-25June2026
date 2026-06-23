@@ -202,7 +202,7 @@ NoSQL>> MongoDB Server
 	username
 	password
 
-Local installation:
+Setting Up Server:
 	local installation >> Mongo Server
 	Cloud>> Atlas>> free 512MB database server
 Tools:
@@ -252,3 +252,27 @@ Connect Backend server/express with MongoDB:
 
 async>> parellel users can access in same time
 await>> insists to wait for the particular transaction response
+
+
+Backend application:
+	1. File
+	2. Local/ Mongodb server >> Insecure because wont have any athentication
+	3. Cloud Atlas mongodb server:
+			1. SignIn >> via google
+			2. Setting up cluster>> free tier>> 512
+			3. Configure Authentication:
+				Network	>> IP address>> block/white
+				User 	
+					>> username, password>> roles: read/write database, admin, read database
+			4. connection string via selecting mongoose driver
+			5. replace in coneection.js
+			
+Securing application:
+	Credentials: db username, password, dbname
+	install package >> dotenv
+	.env>> file
+		db_name
+		db_user
+		db_pass
+	.gitignore>> git file where we can specify certain files not to upload
+		.env
