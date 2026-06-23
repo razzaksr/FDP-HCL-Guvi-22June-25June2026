@@ -1,0 +1,35 @@
+@api = http://localhost:2222
+
+# deciding the storage target(file/db)
+
+###
+GET {{api}}/db
+
+###
+GET {{api}}/api/all
+
+###
+
+POST {{api}}/api/book
+Content-Type: application/json
+
+{
+    "corporate":"ZOHO",
+    "date":"2025-11-30",
+    "role":"Front end Developer",
+    "package":5.2,
+    "count":5
+}
+
+###
+PATCH {{api}}/api/edit/IBM
+Content-Type: application/json
+
+{
+    "package":15.5,
+    "count":3
+}
+
+###
+
+DELETE {{api}}/api/del/IBM

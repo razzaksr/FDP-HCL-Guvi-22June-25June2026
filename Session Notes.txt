@@ -185,8 +185,70 @@ client>> rest client/postman
 
 
 
-File
+File>> storage
 DAO
 Controller(Router)		>> Rest API >> json
 index.js(Main File/ server)
 Client
+
+
+
+
+
+Database:
+NoSQL>> MongoDB Server 
+	port		>> 27017
+	location	>> localhost/ 127.0.0.1
+	username
+	password
+
+Local installation:
+	local installation >> Mongo Server
+	Cloud>> Atlas>> free 512MB database server
+Tools:
+	MongoDB Compass
+
+database:
+	Collections>> tables
+		documents>> record/rows
+			eg: {"key":value,"key":value} >> document/ BSON
+
+
+view dbs:
+	show databases;
+switch/ create database:
+	use DATABASE;
+view collections:
+	show collections
+create/insert document into the collections:
+	db.COLLECTIONNAME.insertOne({})
+view documents in the collection:
+	db.COLLECTIONNAME.find()
+filter based atomic operators:
+	db.COLLECTIONNAME.find({filter})
+	eg:
+	db.professor.find({"experience":{"$gte":15}})
+	db.professor.find({"department":"ISE"})
+update documents:
+	db.COLLECTIONNAME.updateOne({where},{set})
+	eg:
+	db.professor.updateMany({"department":"ISE"},{$set:{"package":25.6}})
+	db.professor.updateOne({"nane":"Razak Mohamed"},{$set:{"department":"ISE"}})
+deletion document:
+	db.COLLECTIONNAME.deleteOne/deleteMany
+	eg:
+	db.professor.deleteMany({"department":{$nin:["CSE","ISE"]}})
+	db.professor.deleteOne({"package":{"$lte":10.0}})
+	db.professor.deleteOne({"nane":"Razak Mohamed"})
+
+
+Connect Backend server/express with MongoDB:
+	1. install package: mongoose >> Object Document Mapping
+	2. configure/establish database server
+	3. configure schema/ collection
+	4. DAO/ service >> CRUD
+	5. Controller
+	6. index.js
+
+async>> parellel users can access in same time
+await>> insists to wait for the particular transaction response
