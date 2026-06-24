@@ -8,4 +8,10 @@ router.post('/register',async(req,res)=>{
     res.json(created)
 })
 
+router.post('/login',async(req,res)=>{
+    const result = await dao.generateToken(req.body)
+    if(!result) res.status(401).json({error:"Unauthorized"})
+    else res.json(result)
+})
+
 module.exports=router

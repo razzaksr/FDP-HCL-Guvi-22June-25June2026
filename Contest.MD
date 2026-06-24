@@ -12,3 +12,12 @@ Schema: Loan
     roi
     type
     tenure
+
+day3: case study
+Build backend which having list String represents journals title
+create jwt authentication with two roles>> author, viewer
+implement endpoint with jwt and role based access control
+    get>> read all journals >> viewer and author can access
+    post>> publish new journal >> author only access
+
+

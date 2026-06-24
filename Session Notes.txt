@@ -312,5 +312,29 @@ Implementation of Role Based Access Control:
 	1. create a middleware to check logged user role is in allowed roles
 	2. include rbac middleware in our controller
 
+Implementation of Json Web Token:
+	install >> jsonwebtoken
+	Token: 	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+			eyJsb2dnZWQiOiJyYXphayIsImlhdCI6MTc2MDQ1MzAwMiwiZXhwIjoxNzYwNDU2NjAyfQ.
+			UdOWH8gdF7CKOJryfFZGmUZA854pYujVZCCBLQyjHx4
+		header>> algorithem to encrypt and decrypt
+		payload>> user information(username/role/contact/email)
+		secret key >> base64encode.org
+				simple encoded text through which we can 
+				generate and validate token
+				make sure same secret key used for both generation and validation
+		expiry >> hours
+	
+	generate using secret key: via login
+		whenever user login
+		jsonwebtoken.sign(payload, secret_key, expiry)
+
+	validate using secret key: via middleware
+		whenever user access the endpoint
+		Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWQiOiJyYXphayIsImlhdCI6MTc2MDQ1MzAwMiwiZXhwIjoxNzYwNDU2NjAyfQ.UdOWH8gdF7CKOJryfFZGmUZA854pYujVZCCBLQyjHx4
+
+		a. extract Authentication
+		b. split Token from Bearer
+		c. Verify using jsonwebtoken
 
 

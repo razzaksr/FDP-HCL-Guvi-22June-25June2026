@@ -4,6 +4,7 @@ const dao = require('./UserDAO')
 // next>>all
 // http://localhost:2222/api/book
 // next>> book
+// basic authentication validation middleware
 const validate = async(req,res,next) => {
     const head = req.headers.authorization
     if(!head) return res.status(401).json({"error":"Unauthorized"})
@@ -28,4 +29,16 @@ const rbac = (allowed) => {
     }
 }
 
-module.exports={validate,rbac}
+// JWT authentication validation middleware
+// Authorization: Bearer 8765456789hvbdfv85d7v768d7f6v8d6f8vdf
+const jwtValidate = async(req,res,next) => {
+    const head = req.headers.authorization
+    if(!head) res.status(401).json({error:"Unauthorized header"})
+    const token = head.split(" ")[1]
+    const received = await dao.validateToken(token)
+    if(!received) res.status(401).json({error:"Unauthorized"})
+    req.user = received;
+    next()
+}
+
+module.exports={validate,rbac,jwtValidate}
