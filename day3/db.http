@@ -1,0 +1,42 @@
+@api = http://localhost:2222
+
+POST {{api}}/auth/register
+Content-Type: application/json
+
+{
+    "username":"manikandan",
+    "password":"mani",
+    "role":"student",
+    "contact":4567654567
+}
+
+### student, cooradinator, manager
+GET {{api}}/api/all
+Authorization: Basic razak:mohamed
+
+### manager, coordinator
+POST {{api}}/api/book
+Authorization: Basic razak:mohamed
+Content-Type: application/json
+
+{
+    "corporate":"Open AI",
+    "date":"2026-05-25",
+    "role":"AI Product Manager",
+    "package":84.2,
+    "count":1
+}
+
+### manager
+PATCH {{api}}/api/edit/TietoEvry
+Authorization: Basic rasheedha:mohamed
+Content-Type: application/json
+
+{
+    "package":15.5,
+    "count":3
+}
+
+### manager
+DELETE {{api}}/api/del/TietoEvry
+Authorization: Basic rasheedha:mohamed

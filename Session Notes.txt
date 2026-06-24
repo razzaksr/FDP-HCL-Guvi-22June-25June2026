@@ -207,6 +207,7 @@ Setting Up Server:
 	Cloud>> Atlas>> free 512MB database server
 Tools:
 	MongoDB Compass
+	MongoDB Shell
 
 database:
 	Collections>> tables
@@ -260,7 +261,7 @@ Backend application:
 	3. Cloud Atlas mongodb server:
 			1. SignIn >> via google
 			2. Setting up cluster>> free tier>> 512
-			3. Configure Authentication:
+			3. Configure Authentication/ Securing Database:
 				Network	>> IP address>> block/white
 				User 	
 					>> username, password>> roles: read/write database, admin, read database
@@ -271,8 +272,45 @@ Securing application:
 	Credentials: db username, password, dbname
 	install package >> dotenv
 	.env>> file
-		db_name
-		db_user
-		db_pass
+		db_uri
 	.gitignore>> git file where we can specify certain files not to upload
 		.env
+
+Authorization & Authentication of Backend application/ express API
+	Securing endpoints from unauthorized access
+	1. Basic authentication:
+			username & password
+	2. Role authentication: RBAC
+			eg: amazon
+				customer:
+					www.amazon.in/placeorder
+					www.amazon.in/browse
+					www.amazon.int/cart
+				seller:
+					www.amazon.in/seller/dash
+					www.amazon.in/seller/invoices
+	3. Json Web Token: jwt Token(expiry) >> web 3.0
+		eg:
+			gmail.com >> user Credentials
+
+
+Implementation of Basic Authentication:
+	1. install bcryptjs >> hash the password(encode,decode)
+	2. Userschema >> username, password(hashed), role, contactno
+		when to hash: pre>> function(triggers in sql) to exeucted before save
+			new user Created	>> save
+			user to be update
+	3. UserDao >> User CRUD >> signup, signin
+	4. UserController >> register,login
+	5. Middleware >> can be added in any endpoint which we would like to secure
+			the endpoint logic would execute only if middleware approve it
+		eg:
+			http://localhost:2222/api/all 
+			Authorization: Basic username:password 
+
+Implementation of Role Based Access Control:
+	1. create a middleware to check logged user role is in allowed roles
+	2. include rbac middleware in our controller
+
+
+
