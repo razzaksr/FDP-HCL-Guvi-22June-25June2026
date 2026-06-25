@@ -1,0 +1,406 @@
+Node JS:
+	standalone java script executor like JDK(Java)
+
+	react, next, vite, angular	>> front end
+	express				>> back end
+
+		receives request
+		process request >> CRUD
+			get, post, put, patch, delete
+		connecting with database(NoSQL, SQL)
+			SQL>> Sequalize>> ORM
+				(function call to sql query)
+			NoSQL>> Mongoose>> ODM
+				(function call to mongodb commands)
+		response to client
+	
+	Backend server: Node JS, Express
+		port			customize port
+		location		localhost
+
+
+Agenda:
+	Develop back end application using files
+	Develop back end application with Mongodb
+	Adding Security (JSON Web Token)
+	Deploy it Render(Free Tier Cloud provide)
+
+example:
+	www.amazon.in	>> application
+	www.amazon.in/profile>>	profile management
+							Controller
+								add
+								edit
+								delete
+	www.amazon.in/cart>> cart management
+						CartController
+							add			>> www.amazon.in/cart/place
+							modify
+							place order
+							remove
+
+	rapido>>
+		rapido.com/ rides>> router
+				RidesController
+					new ride
+					view rides
+					download invoices
+					rate the rides
+	swiggy>>
+		swiggy.com/instamart>> router
+				OrderController
+					place order
+					view orders
+					rate orders
+					modify orders
+		swiggy.com/dining
+		swiggy.com/delivery
+
+
+Development Kit:
+	Node
+		nodejs.org
+
+	Verify>>
+		open cmd>> 
+			node --version
+
+	Node Package Manage>> npm
+		https://www.npmjs.com/ 
+			central dependency/libraries we can download / add into our project/app
+
+		syntax:
+			npm i LIBRARY
+		eg: install libraries
+			npm i body-parser
+			npm i mongoose
+				or
+			npm i express body-parser mongoose
+		eg: uninstall
+			npm uninstall body-parser
+
+Project Structure:
+	main.js/index.js	>> execution start point
+	package.json	>> project config
+			{
+				"dependencies":{
+						"express":version,
+						"mongoose":version
+				},
+				script:{
+					"start" : "node index.js",
+				},
+			}
+	
+	node_modules: physical section
+			dependencies >> 
+
+
+	command to create node project:
+		npm init -y (typical quick project)
+		npm init	(interactive mode to create project)
+
+
+	create our first js
+	run our first js file
+
+
+	prompt-sync>> library used get user input at runtime in our console
+
+	typical function syntax:	
+	function NAMEFUN(paramters){
+		// logic
+	}
+
+	arrow function syntax:
+	const/let/var NAMEFUN = (parameters) => {
+		
+	}
+
+
+
+Created project>> filestore
+	install express
+index.js
+	configure back end server:
+		import express object
+		assign port where server would run
+		
+	mapping>> request, response
+		get, post, put, patch, delete
+
+		get>> read data
+		post>> pass, save, submit
+		patch>> edit
+		delete>> remove
+		put>> update
+
+	eg: www.flipkart.com	>> application
+		flipkart.com/kart	>> router
+			KartController >> controller
+				mapping functions:
+					new item		>> post
+					view items	>> get
+					update items	>> patch/put
+					remove items	>> delete
+
+					app.get(request, response)
+					app.post(request, response)
+					app.patch(req, res)
+					app.delete(req, res)
+
+
+	nodemon>> deploy/ restart server automatically as soon as changes happens
+	npm i nodemon
+		replace: node index.js
+		into : nodemon index.js
+
+
+
+	scripts:
+		start: nodemon index.js
+
+	pass inputs to backend via request object:
+		parameter: it is visible in url>> req.params.
+		body: its secure since not visible>> req.body
+
+	test our endpoints:
+		browser>> get, delete via paramaters
+		client>> rest client >> vs code extension
+			postman, swagger
+			create .http where client calls managed
+
+			url, call
+
+	send>> html
+	json>> json
+
+
+
+Complete CRUD Application for placement:
+
+storage: File >> JSON
+api>> express
+client>> rest client/postman
+
+
+
+File>> storage
+DAO
+Controller(Router)		>> Rest API >> json
+index.js(Main File/ server)
+Client
+
+
+
+
+
+Database:
+NoSQL>> MongoDB Server 
+	port		>> 27017
+	location	>> localhost/ 127.0.0.1
+	username
+	password
+
+Setting Up Server:
+	local installation >> Mongo Server
+	Cloud>> Atlas>> free 512MB database server
+Tools:
+	MongoDB Compass
+	MongoDB Shell
+
+database:
+	Collections>> tables
+		documents>> record/rows
+			eg: {"key":value,"key":value} >> document/ BSON
+
+
+view dbs:
+	show databases;
+switch/ create database:
+	use DATABASE;
+view collections:
+	show collections
+create/insert document into the collections:
+	db.COLLECTIONNAME.insertOne({})
+view documents in the collection:
+	db.COLLECTIONNAME.find()
+filter based atomic operators:
+	db.COLLECTIONNAME.find({filter})
+	eg:
+	db.professor.find({"experience":{"$gte":15}})
+	db.professor.find({"department":"ISE"})
+update documents:
+	db.COLLECTIONNAME.updateOne({where},{set})
+	eg:
+	db.professor.updateMany({"department":"ISE"},{$set:{"package":25.6}})
+	db.professor.updateOne({"nane":"Razak Mohamed"},{$set:{"department":"ISE"}})
+deletion document:
+	db.COLLECTIONNAME.deleteOne/deleteMany
+	eg:
+	db.professor.deleteMany({"department":{$nin:["CSE","ISE"]}})
+	db.professor.deleteOne({"package":{"$lte":10.0}})
+	db.professor.deleteOne({"nane":"Razak Mohamed"})
+
+
+Connect Backend server/express with MongoDB:
+	1. install package: mongoose >> Object Document Mapping
+	2. configure/establish database server
+	3. configure schema/ collection
+	4. DAO/ service >> CRUD
+	5. Controller
+	6. index.js
+
+async>> parellel users can access in same time
+await>> insists to wait for the particular transaction response
+
+
+Backend application:
+	1. File
+	2. Local/ Mongodb server >> Insecure because wont have any athentication
+	3. Cloud Atlas mongodb server:
+			1. SignIn >> via google
+			2. Setting up cluster>> free tier>> 512
+			3. Configure Authentication/ Securing Database:
+				Network	>> IP address>> block/white
+				User 	
+					>> username, password>> roles: read/write database, admin, read database
+			4. connection string via selecting mongoose driver
+			5. replace in coneection.js
+			
+Securing application:
+	Credentials: db username, password, dbname
+	install package >> dotenv
+	.env>> file
+		db_uri
+	.gitignore>> git file where we can specify certain files not to upload
+		.env
+
+Authorization & Authentication of Backend application/ express API
+	Securing endpoints from unauthorized access
+	1. Basic authentication:
+			username & password
+	2. Role authentication: RBAC
+			eg: amazon
+				customer:
+					www.amazon.in/placeorder
+					www.amazon.in/browse
+					www.amazon.in/cart
+				seller:
+					www.amazon.in/seller/dash
+					www.amazon.in/seller/invoices
+	3. Json Web Token: jwt Token(expiry) >> web 3.0
+		eg:
+			gmail.com >> user Credentials
+
+
+Implementation of Basic Authentication:
+	1. install bcryptjs >> hash the password(encode,decode)
+	2. Userschema >> username, password(hashed), role, contactno
+		when to hash: pre>> function(triggers in sql) to exeucted before save
+			new user Created	>> save
+			user to be update
+	3. UserDao >> User CRUD >> signup, signin
+	4. UserController >> register,login
+	5. Middleware >> can be added in any endpoint which we would like to secure
+			the endpoint logic would execute only if middleware approve it
+		eg:
+			http://localhost:2222/api/all 
+			Authorization: Basic username:password 
+
+Implementation of Role Based Access Control:
+	1. create a middleware to check logged user role is in allowed roles
+	2. include rbac middleware in our controller
+
+Implementation of Json Web Token:
+	install >> jsonwebtoken
+	Token: 	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+			eyJsb2dnZWQiOiJyYXphayIsImlhdCI6MTc2MDQ1MzAwMiwiZXhwIjoxNzYwNDU2NjAyfQ.
+			UdOWH8gdF7CKOJryfFZGmUZA854pYujVZCCBLQyjHx4
+		header>> algorithem to encrypt and decrypt
+		payload>> user information(username/role/contact/email)
+		secret key >> base64encode.org
+				simple encoded text through which we can 
+				generate and validate token
+				make sure same secret key used for both generation and validation
+		expiry >> hours
+	
+	generate using secret key: via login
+		whenever user login
+		jsonwebtoken.sign(payload, secret_key, expiry)
+
+	validate using secret key: via middleware
+		whenever user access the endpoint
+		Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWQiOiJyYXphayIsImlhdCI6MTc2MDQ1MzAwMiwiZXhwIjoxNzYwNDU2NjAyfQ.UdOWH8gdF7CKOJryfFZGmUZA854pYujVZCCBLQyjHx4
+
+		a. extract Authentication
+		b. split Token from Bearer
+		c. Verify using jsonwebtoken
+
+
+Deployment:
+	secure our confidential information: db_url, secret key using .env
+	1. Local:
+		npm run build	>> compile, generate executable>> deploy it locally
+	2. Cloud:
+		AWS, GCP, Azure		>> Paid
+		Render				>> Free
+		a. Pushed code into GitHub
+		b. Signup with Render.com via GitHub profile
+		c. Authenticated Render in GitHub
+		d. Selected github repository to be hosted by render
+		e. Repository:
+			build command: npm install
+			start: 	npm start
+			environment variables: db_url, secret_key, PORT
+			Select subscription: Free>> 512MB RAM
+			Deploy
+		f. changes in our code:
+			package.json >> start:node index.js
+			index.js		>> process.env.PORT>> listen
+
+	https://fdp-corporate.onrender.com/ 		>> render hook
+
+
+CI/CD >> Pipeline>> Automate the deployment build
+GitHub Actions>> automate integration and deploy when changes are made and pushed into github
+	whenever we add new features it would be deployed automatically
+	version: 1.0.0	>> basic CRUD
+	version: 1.1.1	>> filter corporates based on salary
+
+
+
+Automating Deployment Process:
+	Issues with Manual deployment:
+		1. changes code
+		2. push
+		3. manual deployment
+	
+	How to automate:
+		1. initialize GitHub workflow(yml script to define ci/cd)
+		2. yml
+			name: workfloa automation name
+			on: trigger point to automate
+			jobs: what automation has to be done
+				build-test:(Optional)
+					runs-on: ubuntu-latest
+					steps:
+						-name: Setup node.js
+						 uses: actions/ setup-node@v3
+						 with: node-version: '24'
+						- name: install dependencies
+						  run: npm install
+				deploy:
+					runs-on: ubuntu-latest
+					needs: build-test
+					steps:
+						- name: Trigger Render Deploy
+						run: curl -x post "$render_deploy_hook_url"
+						env: 
+							render_deploy_hook_url : ${{secret.RENDER_DEPLOY_HOOK_URL}}
+		3. Add secret of repository:
+			GitHub respository >> settings>> secret>>actions>>
+				Name: RENDER_DEPLOY_HOOK_URL
+				Value: paste value from the webservice settings of render called>> Deployment Hook
+			Save secret
+		4. Push and verify changes
