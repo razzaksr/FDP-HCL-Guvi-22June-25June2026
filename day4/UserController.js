@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const dao = require('../day4/UserDAO')
+const dao = require('./UserDAO')
 
 router.post('/register',async(req,res)=>{
     const collect = req.body

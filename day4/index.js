@@ -1,8 +1,8 @@
 const app = require('express')()
 const parser = require('body-parser')
 const db = require('./connection')
-const dbApi = require('../day4/CorporateDbController')
-const uApi = require('../day4/UserController')
+const dbApi = require('./CorporateDbController')
+const uApi = require('./UserController')
 
 db()
 app.use(parser.json())

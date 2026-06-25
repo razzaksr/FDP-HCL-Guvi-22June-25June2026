@@ -285,7 +285,7 @@ Authorization & Authentication of Backend application/ express API
 				customer:
 					www.amazon.in/placeorder
 					www.amazon.in/browse
-					www.amazon.int/cart
+					www.amazon.in/cart
 				seller:
 					www.amazon.in/seller/dash
 					www.amazon.in/seller/invoices
@@ -338,3 +338,15 @@ Implementation of Json Web Token:
 		c. Verify using jsonwebtoken
 
 
+Deployment:
+	secure our confidentials information: db_url, secret key using .env
+	1. Local:
+		npm run build	>> compile, generate executable>> deploy it locally
+	2. Cloud:
+		AWS, GCP, Azure		>> Paid
+		Render				>> Free
+
+CI/CD >> Pipeline>> Automate the deployment build
+	whenever we add new features it would be deployed automatically
+	version: 1.0.0	>> basic CRUD
+	version: 1.1.1	>> filter corporates based on salary

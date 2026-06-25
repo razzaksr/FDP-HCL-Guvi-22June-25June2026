@@ -1,4 +1,4 @@
-const dao = require('../day4/UserDAO')
+const dao = require('./UserDAO')
 // http://localhost:2222/api/all
 // Authorization: Basic username:password
 // next>>all
